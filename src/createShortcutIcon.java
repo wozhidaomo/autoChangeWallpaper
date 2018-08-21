@@ -71,8 +71,8 @@ public class createShortcutIcon {
 
 //            System.setProperty("java.library.path",new File(".").getCanonicalPath()+"\\libraryPath");
             System.out.println(System.getProperty("java.library.path"));
-            String fileFolderPath = new File(".").getCanonicalPath()+"\\autoStart.bat";//文件存放路径
-            String writeFolderPath =  new File(".").getCanonicalPath()+"\\abc\\autoStart.bat"; //写入路径
+            String fileFolderPath = new File(".").getCanonicalPath() + "\\" + "autoStartJKW.bat";
+            String writeFolderPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\autoStartJKW.bat"; //写入路径
             System.out.println("fileFolder:"+fileFolderPath+"     writeFolder"+writeFolderPath);
             createShortCut(fileFolderPath, writeFolderPath);
 

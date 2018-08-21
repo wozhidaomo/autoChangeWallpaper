@@ -62,6 +62,7 @@ public class ChangeWallpaper {
             try {
                 String fileFolderPath = new File(".").getCanonicalPath() + "\\" + "autoStartJKW.bat";
                 String writeFolderPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\autoStartJKW.bat"; //写入路径
+                System.out.println("filepath:"+fileFolderPath+"---writepath:"+writeFolderPath);
                 createShortcutIcon.createShortCut(fileFolderPath, writeFolderPath);
             } catch (IOException e) {
                 e.printStackTrace();
