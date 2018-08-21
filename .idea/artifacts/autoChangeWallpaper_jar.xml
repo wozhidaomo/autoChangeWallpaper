@@ -6,6 +6,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/src/source/jna-4.1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/source/jna-platform-4.1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/source/json.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jshortcut-0_4" />
     </root>
   </artifact>
 </component>

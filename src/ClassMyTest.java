@@ -25,7 +25,7 @@ public class ClassMyTest {
     public void waterPress(String srcImgPath, String outImgPath, Color markContentColor, int fontSize, List<String> jokeContent) {
         try {
             String currentJoke = "";//当前笑话
-            System.out.println("filesrc:"+srcImgPath);
+            System.out.println("filesrc:" + srcImgPath);
 // 读取原图片信息
             File srcImgFile = new File(srcImgPath);
             BufferedImage bufferedImage = new BufferedImage(
@@ -42,7 +42,7 @@ public class ClassMyTest {
             Graphics2D g = bufImg.createGraphics();
             g.drawImage(srcImg, 0, 0, srcImgWidth, srcImgHeight, null);
             g.setBackground(Color.WHITE);
-            g.clearRect(0,0,srcImgWidth,srcImgHeight);
+            g.clearRect(0, 0, srcImgWidth, srcImgHeight);
 //Font font = new Font("Courier New", Font.PLAIN, 12);
             Font font = new Font("黑体", Font.PLAIN, fontSize);
             g.setColor(markContentColor);//根据图片的背景设置水印颜色
@@ -54,32 +54,32 @@ public class ClassMyTest {
 
             int y = fontSize;
             System.out.println("水印文字总长度:" + fontlen + ",图片宽度:" + srcImgWidth + ",字符个数:" + currentJoke.length());
-            double tempXD=0.25*srcImgWidth;
-            int tempX = (int)tempXD;
-            System.out.println("x:"+tempX);
-            int tempY = (int)(y+(int)srcImgHeight*0.2);
+            double tempXD = 0.25 * srcImgWidth;
+            int tempX = (int) tempXD;
+            System.out.println("x:" + tempX);
+            int tempY = (int) (y + (int) srcImgHeight * 0.2);
             //记录当前行最大Y
-            int currentMaxY=y;
+            int currentMaxY = y;
             for (String jc : jokeContent) {
 
                 //currentY
-                int currentY=tempY;
+                int currentY = tempY;
                 //currentX
-                int currentX=tempX;
-//文字叠加,自动换行叠加
+                int currentX = tempX;
+//文字叠加,自动换行叠加      https://h5-m-ssl.xunlei.com/h5/page/download-share/index.html?appVersion=11130&appType=android&origin=a_sl_app_v5.63.2.5610&storid=44579cb84e
                 int tempCharLen = 0;//单字符长度
                 int tempLineLen = 0;//单行字符总长度临时计算
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < jc.length(); i++) {
                     char tempChar = jc.charAt(i);
                     tempCharLen = getCharLen(tempChar, g);
-                    double charCount=0d;
-                    if(tempCharLen!=0) charCount=500/tempCharLen;//一行能放多少个字符
-                   double countHang= jc.length()/charCount;//行数
-                    double currentHeight=countHang*fontSize;//这段笑话的高度
-                    if (currentHeight+currentY>srcImgHeight)break;
+                    double charCount = 0d;
+                    if (tempCharLen != 0) charCount = 500 / tempCharLen;//一行能放多少个字符
+                    double countHang = jc.length() / charCount;//行数
+                    double currentHeight = countHang * fontSize;//这段笑话的高度
+                    if (currentHeight + currentY > srcImgHeight) break;
                     tempLineLen += tempCharLen;
-                    if (tempLineLen >= 500 || (tempX+tempLineLen)>=srcImgWidth-srcImgWidth*0.25) {
+                    if (tempLineLen >= 500 || (tempX + tempLineLen) >= srcImgWidth - srcImgWidth * 0.25) {
 //长度已经满一行,进行文字叠加
                         g.drawString(sb.toString(), tempX, tempY);
 
@@ -93,10 +93,13 @@ public class ClassMyTest {
                     sb.append(tempChar);//追加字符
                 }
                 g.drawString(sb.toString(), tempX, tempY);//最后叠加余下的文字
-                currentMaxY=tempY>currentMaxY?tempY:currentMaxY;
-                tempY=currentY;
-                tempX+=520;
-                if ((tempX+tempLineLen)>=srcImgWidth-srcImgWidth*0.25){tempY=currentMaxY+40;tempX=(int)tempXD;}
+                currentMaxY = tempY > currentMaxY ? tempY : currentMaxY;
+                tempY = currentY;
+                tempX += 520;
+                if ((tempX + tempLineLen) >= srcImgWidth - srcImgWidth * 0.25) {
+                    tempY = currentMaxY + 40;
+                    tempX = (int) tempXD;
+                }
             }
             g.dispose();
 
@@ -144,7 +147,7 @@ public class ClassMyTest {
                 JSONObject currentJson = (JSONObject) jokes.get(i);
                 jokeList.add(currentJson.getString("text"));
             }
-            CM.waterPress(new File(".").getCanonicalPath()+ "\\"  +"wallpaper.jpg", new File(".").getCanonicalPath()+ "\\"  +"wallpaper.jpg", Color.black, 20, jokeList);
+            CM.waterPress(new File(".").getCanonicalPath() + "\\" + "wallpaper.jpg", new File(".").getCanonicalPath() + "\\" + "wallpaper.jpg", Color.black, 20, jokeList);
         } catch (Exception e) {
             e.printStackTrace();
         }
